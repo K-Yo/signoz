@@ -9,6 +9,10 @@ receivers:
       disk: {}
       filesystem: {}
       network: {}
+  docker_stats:
+    api_version: "1.50"
+    container_labels_to_metric_labels:
+      coolify.projectName: coolify_project
   otlp:
     protocols:
       grpc:
