@@ -19,7 +19,7 @@ receivers:
         - job_name: tailscale
           static_configs:
             - targets:
-                - http://100.100.100.100
+                - '100.100.100.100'
               labels:
                 job_name: tailscale 
 processors:
