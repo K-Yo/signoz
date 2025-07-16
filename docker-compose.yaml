@@ -219,34 +219,34 @@ services:
 
 
 
-  otel-agent:
-    networks:
-      - signoz-net
-    extra_hosts:
-      - host.docker.internal:host-gateway
-    logging:
-      options:
-        max-size: 50m
-        max-file: "3"
-    restart: unless-stopped
-    image: otel/opentelemetry-collector-contrib:0.111.0
-    command:
-      - --config=/etc/otel-collector-config.yaml
-    volumes:
-      - ./deploy/docker/generator/infra/otel-collector-config.yaml:/etc/otel-collector-config.yaml
-      - /:/hostfs:ro
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - SIGNOZ_COLLECTOR_ENDPOINT=http://host.docker.internal:4317    # In case of external SigNoz or cloud, update the endpoint and access token
-      - OTEL_RESOURCE_ATTRIBUTES=host.name=bison,os.type=linux  # Replace signoz-host with the actual hostname
-      # - SIGNOZ_ACCESS_TOKEN="<your-access-token>"
-    depends_on:
-      signoz:
-        condition: service_healthy
-    # Before exposing the ports, make sure the ports are not used by other services
-    # ports:
-    #   - "4317:4317"
-    #   - "4318:4318"
+  # otel-agent:
+  #   networks:
+  #     - signoz-net
+  #   extra_hosts:
+  #     - host.docker.internal:host-gateway
+  #   logging:
+  #     options:
+  #       max-size: 50m
+  #       max-file: "3"
+  #   restart: unless-stopped
+  #   image: otel/opentelemetry-collector-contrib:0.111.0
+  #   command:
+  #     - --config=/etc/otel-collector-config.yaml
+  #   volumes:
+  #     - ./deploy/docker/generator/infra/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+  #     - /:/hostfs:ro
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   environment:
+  #     - SIGNOZ_COLLECTOR_ENDPOINT=http://host.docker.internal:4317    # In case of external SigNoz or cloud, update the endpoint and access token
+  #     - OTEL_RESOURCE_ATTRIBUTES=host.name=bison,os.type=linux  # Replace signoz-host with the actual hostname
+  #     # - SIGNOZ_ACCESS_TOKEN="<your-access-token>"
+  #   depends_on:
+  #     signoz:
+  #       condition: service_healthy
+  #   # Before exposing the ports, make sure the ports are not used by other services
+  #   # ports:
+  #   #   - "4317:4317"
+  #   #   - "4318:4318"
   logspout:
     networks:
       - signoz-net
