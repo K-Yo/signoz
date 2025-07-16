@@ -119,7 +119,7 @@ services:
         condition: service_healthy
       schema-migrator-sync:
         condition: service_completed_successfully
-    image: signoz/signoz:${VERSION:-v0.86.2}
+    image: signoz/signoz:${VERSION:-v0.90.1}
     container_name: signoz
     command:
       - --config=/root/config/prometheus.yml
@@ -159,7 +159,7 @@ services:
       options:
         max-size: 50m
         max-file: "3"
-    image: signoz/signoz-otel-collector:${OTELCOL_TAG:-v0.111.42}
+    image: signoz/signoz-otel-collector:${OTELCOL_TAG:-v0.128.2}
     container_name: signoz-otel-collector
     command:
       - --config=/etc/otel-collector-config.yaml
@@ -186,7 +186,7 @@ services:
       options:
         max-size: 50m
         max-file: "3"
-    image: signoz/signoz-schema-migrator:${OTELCOL_TAG:-v0.111.42}
+    image: signoz/signoz-schema-migrator:${OTELCOL_TAG:-v0.128.2}
     container_name: schema-migrator-sync
     command:
       - sync
@@ -208,7 +208,7 @@ services:
         condition: service_healthy
       schema-migrator-sync:
         condition: service_completed_successfully
-    image: signoz/signoz-schema-migrator:${OTELCOL_TAG:-v0.111.42}
+    image: signoz/signoz-schema-migrator:${OTELCOL_TAG:-v0.128.2}
     container_name: schema-migrator-async
     command:
       - async
