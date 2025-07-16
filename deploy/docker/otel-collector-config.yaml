@@ -86,7 +86,7 @@ service:
     logs:
       encoding: json
     metrics:
-      address: 0.0.0.0:8888
+      readers: 0.0.0.0:8888
   extensions:
     - health_check
     - pprof
