@@ -46,6 +46,10 @@ services:
       timeout: 5s
       retries: 3
     container_name: signoz-zookeeper-1
+    expose:
+      - 2181
+      - 2888
+      - 3888
     # ports:
     #   - "2181:2181"
     #   - "2888:2888"
@@ -94,6 +98,10 @@ services:
         soft: 262144
         hard: 262144
     container_name: signoz-clickhouse
+    expose:
+      - 9000
+      - 8123
+      - 9181
     # ports:
     #   - "9000:9000"
     #   - "8123:8123"
@@ -125,6 +133,7 @@ services:
       - --config=/root/config/prometheus.yml
     expose:
       - 8080
+      - 6060
     # ports:
     #   - "8080:8080" # signoz port
     #   - "6060:6060"     # pprof port
